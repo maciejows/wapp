@@ -1,14 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { weatherReducer } from './store/weather.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { WeatherEffects } from './store/weather.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchBarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({weather: weatherReducer}),
+    EffectsModule.forRoot([WeatherEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
