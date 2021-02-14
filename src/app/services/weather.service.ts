@@ -13,4 +13,7 @@ export class WeatherService {
   getLocationWoeid(query: String): Observable<any> {
     return this._http.get(`${this.apiUrl}/search/?query=${query}`);
   }
+  getWeatherDetails(woeid: String): Observable<any>{
+    return this._http.get(`${this.apiUrl}/${woeid}`);
+  }
 }

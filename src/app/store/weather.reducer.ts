@@ -1,18 +1,19 @@
 import { createReducer, Action, on } from '@ngrx/store'
-import { loadWeatherSuccess, loadWeatherError } from './weather.actions';
+import { getWeatherDetailsSuccess, getWeatherDetailsError } from './weather.actions';
 import { WeatherState } from '../models/WeatherState';
 
 export const initialState: WeatherState = {
-    weather: undefined,
+    weather: {},
     error: ''
 }
 
 const _weatherReducer = createReducer(
     initialState,
-    on(loadWeatherSuccess, (state, {data}) => ({...state, weather: data })),
-    on(loadWeatherError, (state, {error}) => ({...state, error: error}))
+    on(getWeatherDetailsSuccess, (state, {weather}) => ({...state, weather: weather })),
+    on(getWeatherDetailsError, (state, {error}) => ({...state, error: error})),
+
 );
 
-export function weatherReducer(state: WeatherState, action: Action): WeatherState {
+export function weatherReducer(state: WeatherState | undefined, action: Action): WeatherState {
     return _weatherReducer(state, action);
 }
