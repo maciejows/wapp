@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiUrl = 'http://localhost:3000/https://www.metaweather.com/api/location';
+  private proxyUrl = 'https://mo-wapp-proxy.herokuapp.com';
+  private apiUrl = `${this.proxyUrl}/https://www.metaweather.com/api/location`;
   
   constructor(private _http: HttpClient) { }
   // Get location woeid (Where On Earth Id)

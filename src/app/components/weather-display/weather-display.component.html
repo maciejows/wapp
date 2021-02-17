@@ -1,0 +1,11 @@
+<mat-card>
+    <span> Simple card </span>
+    
+    <mat-progress-spinner
+        *ngIf="(weatherState$ | async)?.isLoading"
+        color="accent" 
+        mode="indeterminate" 
+        [diameter]="40">
+    </mat-progress-spinner>
+
+</mat-card>

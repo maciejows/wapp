@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { mergeMap, map, catchError, tap } from 'rxjs/operators';
 import { WeatherService } from '../services/weather.service';
-import { getLocationWoeid, getLocationWoeidError, getWeatherDetails, getWeatherDetailsError, getWeatherDetailsSuccess } from './weather.actions';
+import { searchForLocations, searchForLocationsError, getWeatherDetails, getWeatherDetailsError, getWeatherDetailsSuccess, searchForLocationsSuccess, getLocationWoeid } from './weather.actions';
+import { Location } from '../models/Location';
 
 @Injectable()
 export class WeatherEffects {
@@ -12,21 +13,42 @@ export class WeatherEffects {
         private weatherService: WeatherService,
         ) {}
 
-    getLocationWoeid$ = createEffect(() => 
+    searchForLocations$ = createEffect(() => 
         this.actions$.pipe(
-            ofType(getLocationWoeid),
+            ofType(searchForLocations),
             mergeMap((action) => 
                 this.weatherService.getLocationWoeid(action.location).pipe(
                     map((data) => 
-                        getWeatherDetails({woeid: data[0]['woeid']})    
+                        searchForLocationsSuccess({locations: Location.mapMultipleLocations(data)})    
                     ),
                     catchError((error) => 
-                        of(getLocationWoeidError({error: error}))
+                        of(searchForLocationsError({error: error}))
                     )
                 )
             )
         )
     );
+
+    getLocationWoeid$ =  createEffect(() => 
+        this.actions$.pipe(
+            ofType(getLocationWoeid),
+            mergeMap((action) => 
+                this.weatherService.getLocationWoeid(action.location).pipe(
+                    // Get the woeid and chain to "getLocationWeather$"
+                    map((data) => {
+                        if(data[0]?.woeid)
+                            return getWeatherDetails({woeid: data[0]?.woeid})
+                        else 
+                            return getWeatherDetailsError({error: "Not found"})
+                    }
+                    ),
+                    catchError((error) => 
+                        of(searchForLocationsError({error: error}))
+                    )
+                )
+            )
+        )
+    )
 
     getLocationWeather$ = createEffect(() => 
         this.actions$.pipe(

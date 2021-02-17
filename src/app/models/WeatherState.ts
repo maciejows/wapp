@@ -1,6 +1,9 @@
 import { Weather } from './Weather';
+import { Location } from './Location';
 
 export interface WeatherState {
+    locations: Location[];
     weather: Weather,
-    error: String
+    isLoading: Boolean,
+    error: string,
 }
