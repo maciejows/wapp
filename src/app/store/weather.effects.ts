@@ -5,6 +5,7 @@ import { mergeMap, map, catchError, tap } from 'rxjs/operators';
 import { WeatherService } from '../services/weather.service';
 import { searchForLocations, searchForLocationsError, getWeatherDetails, getWeatherDetailsError, getWeatherDetailsSuccess, searchForLocationsSuccess, getLocationWoeid } from './weather.actions';
 import { Location } from '../models/Location';
+import { WeatherResult } from '../models/WeatherResult';
 
 @Injectable()
 export class WeatherEffects {
@@ -56,7 +57,7 @@ export class WeatherEffects {
             mergeMap((action) => 
                 this.weatherService.getWeatherDetails(action.woeid).pipe(
                     map((data) => 
-                        getWeatherDetailsSuccess({weather: data}) 
+                        getWeatherDetailsSuccess({weather: new WeatherResult(data)}) 
                     ),
                     catchError((error) => 
                         of(getWeatherDetailsError({error: error}))

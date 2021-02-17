@@ -1,11 +1,22 @@
-<mat-card>
-    <span> Simple card </span>
-    
-    <mat-progress-spinner
-        *ngIf="(weatherState$ | async)?.isLoading"
-        color="accent" 
-        mode="indeterminate" 
-        [diameter]="40">
-    </mat-progress-spinner>
+<mat-progress-spinner
+*ngIf="(weatherState$ | async)?.isLoading"
+color="accent" 
+mode="indeterminate" 
+[diameter]="40">
+</mat-progress-spinner>
 
+<mat-card *ngIf="(weatherState$ | async)?.weather as weather">
+    <div>
+        <h2>{{weather.locationTitle}}</h2>
+        <p>{{weather.currentTime}}</p>
+        <p>{{weather.sunRise}}</p>
+        <p>{{weather.sunSet}}</p>
+        <mat-divider></mat-divider>
+        <div *ngFor="let details of weather.weatherDetails">
+            <img [src]="details.weatherStateImg">
+            <span> {{details.temp}} </span>
+            <span> {{details.applicableDate}} </span>
+            <span> {{details.weatherStateName}} </span>
+        </div>
+    </div>
 </mat-card>

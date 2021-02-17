@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
 
 export const materialImports = [
     MatInputModule,
@@ -13,5 +14,6 @@ export const materialImports = [
     MatIconModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDividerModule
 ];

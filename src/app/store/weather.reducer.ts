@@ -5,7 +5,13 @@ import { Location } from '../models/Location';
 
 export const initialState: WeatherState = {
     locations: [],
-    weather: {},
+    weather: {
+        locationTitle: '',
+        currentTime: '',
+        sunRise: '',
+        sunSet: '',
+        weatherDetails: []
+    },
     isLoading: false,
     error: ''
 }
