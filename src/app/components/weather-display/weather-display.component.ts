@@ -14,6 +14,7 @@ import { getLocationWoeid } from 'src/app/store/weather.actions';
 export class WeatherDisplayComponent implements OnInit{
   isLoading$: Observable<Boolean>;
   weatherResult$: Observable<WeatherResult>;
+  error$: Observable<any>;
   selectedWeather$: Observable<WeatherDetails>;
   
   constructor(private store: Store<{ weather: WeatherState }>) {}
@@ -22,5 +23,6 @@ export class WeatherDisplayComponent implements OnInit{
     this.isLoading$ = this.store.select(state => state.weather.isLoading);
     this.weatherResult$ = this.store.select(state => state.weather.weather);
     this.selectedWeather$ = this.store.select(state => state.weather.selectedDetails);
+    this.error$ = this.store.select(state => state.weather.error);
   }
 }
