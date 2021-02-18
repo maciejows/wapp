@@ -1,9 +1,33 @@
 .flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-  }
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
 
-  .flex-item {
-    flex: 0 1 120px
-  }
+.flex-item {
+  flex: 0 1 120px;
+}
+
+#location-title {
+  margin-top: 6px;
+  margin-bottom: 0px;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+p {
+  margin: 0;
+  align-content: center;
+}
+
+img {
+  height: 24px;
+  margin-right: 4px;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+}

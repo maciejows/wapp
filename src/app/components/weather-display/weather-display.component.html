@@ -11,11 +11,11 @@ class="margin-x-auto">
         <div>
             <app-weather-details [weather]="selectedWeather$ | async"></app-weather-details>
         </div>
-        <div>
-            <h2>{{weatherResult.locationTitle}}</h2>
-            <p>{{weatherResult.timezone}}</p>
-            <p>Sun rise: {{weatherResult.sunRise | timeFromDate}}</p>
-            <p>Sun set: {{weatherResult.sunSet | timeFromDate}}</p>
+        <div class="align-text-center">
+            <h2 id="location-title">{{weatherResult.locationTitle}}</h2>
+            <p class="secondary-text">{{weatherResult.timezone}}</p>
+            <div class="time"><img src="/assets/sun.svg"> {{weatherResult.sunRise | timeFromDate}}</div>
+            <div class="time"><img src="/assets/moon.svg"> {{weatherResult.sunSet | timeFromDate}}</div>
         </div>
     </div>
         <mat-divider></mat-divider>

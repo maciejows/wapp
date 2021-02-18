@@ -1,12 +1,12 @@
 <div *ngIf="weather" class="flex-container">
     <div class="flex-item">
-        <p>{{weather.applicableDate | customDate}}</p>
+        <h2>{{weather.applicableDate | customDate}}</h2>
         <img [src]="weather.weatherStateImg">
         <p>{{weather.weatherStateName}}</p>
     </div>
-    <div class="flex-item">
-        <p>{{weather.temp}}</p>
-        <p>Pressure: {{weather.airPressure}} hPa</p>
-        <p>Wind: {{weather.windSpeed }} km/h</p>
+    <div class="flex-item align-text-start">
+        <p id="temperature">{{weather.temp}} &#8451; </p>
+        <p class="secondary-text"> Pressure: {{weather.airPressure}} hPa</p>
+        <p class="secondary-text"> Wind: {{weather.windSpeed }} km/h</p>
     </div>
 </div>

@@ -20,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
 import { TimeFromDatePipe } from './pipes/time-from-date.pipe';
+import { FooterComponent } from './components/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { TimeFromDatePipe } from './pipes/time-from-date.pipe';
     DailyWeatherComponent,
     CustomDatePipe,
     WeatherDetailsComponent,
-    TimeFromDatePipe
+    TimeFromDatePipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
