@@ -1,0 +1,10 @@
+<button 
+mat-button 
+[style.backgroundColor]="(weather == selectedWeather)? 'grey' : 'inherit'"
+(click)="selectWeatherDetails()" class="daily-card">
+    <p> {{weather.applicableDate | customDate}} </p>
+    <div class="temperature-box">
+        <img [src]="weather.weatherStateImg">
+        <span> {{weather.temp}} &#8451; </span>
+    </div>
+</button>

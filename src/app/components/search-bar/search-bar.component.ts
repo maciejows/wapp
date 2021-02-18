@@ -1,29 +1,41 @@
-import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, mergeMap, switchMap } from 'rxjs/operators';
 import { WeatherState } from 'src/app/models/WeatherState';
-import { WeatherService } from 'src/app/services/weather.service';
-import { getLocationWoeid } from 'src/app/store/weather.actions';
+import { searchForLocations, getLocationWoeid } from 'src/app/store/weather.actions';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
-  locations$ = this.store.select(state => state.weather);
-  constructor(
-    private store: Store<{ weather: WeatherState }>,
-    private _weatherService: WeatherService
-    ) {}
+export class SearchBarComponent {
+  locations$ = this.store.select(state => state.weather.locations);
+  searchTerms = new Subject<string>();
+  searchSubscription: Subscription;
 
-  ngOnInit(): void {
+  constructor(private store: Store<{ weather: WeatherState }>) {
+    this.searchSubscription = this.searchTerms.pipe(
+      debounceTime(100),
+      distinctUntilChanged(),
+    ).subscribe(term => this.searchLocation(term))
   }
 
-  searchLocation(query: String) {
-    this.store.dispatch(getLocationWoeid({location: query}));
-
-    //this._weatherService.getLocationWoeid(query).subscribe(data => console.log(data));
+  // Autocomplete
+  onKeyUp(term: string){
+    console.log(`New key: ${term}`);
+    this.searchTerms.next(term);
   }
+
+  // Used in autocomplete multiple locations search
+  searchLocation(query: string) {
+    this.store.dispatch(searchForLocations({location: query}))
+  }
+
+  // Used for retrieving specific woeid of location and weather details
+  getLocationDetails(query: string) {
+    this.store.dispatch(getLocationWoeid({location: query}))
+  }
+
 }

@@ -1,6 +1,11 @@
-import { Weather } from './Weather';
+import { WeatherResult } from './WeatherResult';
+import { Location } from './Location';
+import { WeatherDetails } from './WeatherDetails';
 
 export interface WeatherState {
-    weather: Weather,
-    error: String
+    locations: Location[];
+    weather: WeatherResult,
+    selectedDetails: WeatherDetails,
+    isLoading: Boolean,
+    error: string,
 }

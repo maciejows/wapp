@@ -1,8 +1,19 @@
 <form class="location-form">
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Location</mat-label>
-      <input #locationInput matInput placeholder="Ex. Los Angeles" value="">
+      <input 
+        #locationInput
+        matInput
+        placeholder="Ex. Los Angeles"
+        value=""
+        [matAutocomplete]="auto"
+        (keyup)="onKeyUp(locationInput.value)">
     </mat-form-field>
-  </form>
+  <button mat-stroked-button (click)="getLocationDetails(locationInput.value)">Search</button>
+</form>
 
-  <button mat-stroked-button (click)="searchLocation(locationInput.value)">Basic</button>
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let location of locations$ | async" [value]="location.title">
+    {{location.title}}
+  </mat-option>
+</mat-autocomplete>
