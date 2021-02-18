@@ -1,22 +1,27 @@
 <mat-progress-spinner
-*ngIf="(weatherState$ | async)?.isLoading"
+*ngIf="(isLoading$ | async)"
 color="accent" 
 mode="indeterminate" 
-[diameter]="40">
+[diameter]="40"
+class="margin-x-auto">
 </mat-progress-spinner>
 
-<mat-card *ngIf="(weatherState$ | async)?.weather as weather">
-    <div>
-        <h2>{{weather.locationTitle}}</h2>
-        <p>{{weather.currentTime}}</p>
-        <p>{{weather.sunRise}}</p>
-        <p>{{weather.sunSet}}</p>
-        <mat-divider></mat-divider>
-        <div *ngFor="let details of weather.weatherDetails">
-            <img [src]="details.weatherStateImg">
-            <span> {{details.temp}} </span>
-            <span> {{details.applicableDate}} </span>
-            <span> {{details.weatherStateName}} </span>
+<mat-card *ngIf="(weatherResult$ | async) as weatherResult">
+    <div class="flex-container">
+        <div>
+            <app-weather-details [weather]="selectedWeather$ | async"></app-weather-details>
+        </div>
+        <div>
+            <h2>{{weatherResult.locationTitle}}</h2>
+            <p>{{weatherResult.timezone}}</p>
+            <p>Sun rise: {{weatherResult.sunRise | timeFromDate}}</p>
+            <p>Sun set: {{weatherResult.sunSet | timeFromDate}}</p>
         </div>
     </div>
+        <mat-divider></mat-divider>
+        <div class="flex-container">
+            <div *ngFor="let details of weatherResult.weatherDetails" class="flex-item">
+                <app-daily-weather [weather]="details" [selectedWeather]="selectedWeather$ | async"></app-daily-weather>
+            </div>
+        </div>
 </mat-card>

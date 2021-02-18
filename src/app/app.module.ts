@@ -15,13 +15,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
-
+import { DailyWeatherComponent } from './components/daily-weather/daily-weather.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
+import { TimeFromDatePipe } from './pipes/time-from-date.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
     NavbarComponent,
-    WeatherDisplayComponent
+    WeatherDisplayComponent,
+    DailyWeatherComponent,
+    CustomDatePipe,
+    WeatherDetailsComponent,
+    TimeFromDatePipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,8 @@ import { WeatherDisplayComponent } from './components/weather-display/weather-di
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-   [...materialImports]
+   [...materialImports],
+   FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

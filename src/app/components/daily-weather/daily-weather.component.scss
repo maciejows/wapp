@@ -1,0 +1,22 @@
+img {
+    width: 30px;
+    height: 30px;
+}
+p {
+    text-align: center;
+}
+
+.daily-card {
+    width: inherit;
+    margin: 10px;
+    padding: 10px;
+}
+
+.temperature-box {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    margin-left: 6px;
+}
