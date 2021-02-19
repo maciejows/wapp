@@ -15,9 +15,8 @@ describe('WeatherService', () => {
       imports: [HttpClientTestingModule]
     });
 
-    // We inject our service (which imports the HttpClient) and the Test Controller
-    httpTestingController = TestBed.get(HttpTestingController);
-    weatherService = TestBed.get(WeatherService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    weatherService = TestBed.inject(WeatherService);
   });
 
   afterEach(() => {

@@ -15,6 +15,7 @@ export class DailyWeatherComponent {
   
   constructor(private store: Store<{weather: WeatherState}>) { }
 
+  // Select daily weather to display with details
   selectWeatherDetails(){
     this.store.dispatch(selectWeatherDetails({details: this.weather}));
   }

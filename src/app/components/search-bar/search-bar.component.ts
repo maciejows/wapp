@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, mergeMap, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { WeatherState } from 'src/app/models/WeatherState';
 import { searchForLocations, getLocationWoeid } from 'src/app/store/weather.actions';
 

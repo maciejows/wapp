@@ -2,8 +2,13 @@ img {
   width: 30px;
   height: 30px;
 }
+
 p {
   text-align: center;
+}
+
+span {
+  margin-left: 6px;
 }
 
 .daily-card {
@@ -15,10 +20,6 @@ p {
 .temperature-box {
   display: flex;
   align-items: center;
-}
-
-span {
-  margin-left: 6px;
 }
 
 .selected-bg {

@@ -16,7 +16,6 @@ import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
 import { DailyWeatherComponent } from './components/daily-weather/daily-weather.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
 import { TimeFromDatePipe } from './pipes/time-from-date.pipe';
@@ -47,7 +46,6 @@ import { FooterComponent } from './components/footer/footer.component';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
    [...materialImports],
-   FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
