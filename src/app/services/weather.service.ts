@@ -10,10 +10,13 @@ export class WeatherService {
   private apiUrl = `${this.proxyUrl}/https://www.metaweather.com/api/location`;
   
   constructor(private _http: HttpClient) { }
+
   // Get location woeid (Where On Earth Id)
   getLocationWoeid(query: String): Observable<any> {
     return this._http.get(`${this.apiUrl}/search/?query=${query}`);
   }
+
+  // Get weather details based on woeid
   getWeatherDetails(woeid: String): Observable<any>{
     return this._http.get(`${this.apiUrl}/${woeid}`);
   }
