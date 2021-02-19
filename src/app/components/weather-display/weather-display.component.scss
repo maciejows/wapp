@@ -1,4 +1,4 @@
-.flex-container {
+.daily-container {
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
@@ -11,6 +11,46 @@
 #location-title {
   margin-top: 6px;
   margin-bottom: 0px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 426px) {
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+  }
+
+  .location-container {
+    flex-direction: row;
+    padding: 14px;
+  }
+
+  #time-container {
+    align-self: center;
+    margin-left: 18px;
+    padding: 16px 16px 16px 22px;
+  }
+
+  #weather-details {
+    order: 2;
+  }
+
+  #location-info {
+    align-self: center;
+    padding: 10px;
+    order: 1;
+  }
 }
 
 .align-text-center {

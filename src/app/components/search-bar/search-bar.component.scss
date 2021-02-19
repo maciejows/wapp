@@ -6,3 +6,11 @@ button {
 .search-form {
   margin-top: 20px;
 }
+
+@media (max-width: 426px) {
+  .search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
