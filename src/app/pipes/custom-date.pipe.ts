@@ -6,12 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CustomDatePipe implements PipeTransform {
 
   transform(value: string): string {
-    let dateFromApi = value.slice(value.indexOf('-') + 1);
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dateFromApi = value.slice(value.indexOf('-') + 1);
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
 
-    return (dateFromApi == `${mm}-${dd}`)? 'Today' : dateFromApi;
+    return (dateFromApi == `${month}-${day}`)? 'Today' : dateFromApi;
   }
 
 }

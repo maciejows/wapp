@@ -2,8 +2,8 @@ export class Location {
     title: string;
     woeid: string;
     constructor(data: any){
-        this.title = data['title']?? '';
-        this.woeid = data['woeid']?? '';
+        this.title = data?.title?? '';
+        this.woeid = data?.woeid?? '';
     }
 
     static mapMultipleLocations(data: any): Location[] {
