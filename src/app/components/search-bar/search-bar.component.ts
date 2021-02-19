@@ -26,7 +26,6 @@ export class SearchBarComponent {
 
   // Autocomplete
   onKeyUp(term: string){
-    console.log(`New key: ${term}`);
     this.searchTerms.next(term);
   }
 
