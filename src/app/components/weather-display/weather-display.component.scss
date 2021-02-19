@@ -1,3 +1,17 @@
+p {
+  margin: 0;
+  align-content: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+img {
+  height: 24px;
+  margin-right: 4px;
+}
+
 .daily-container {
   display: flex;
   justify-content: space-between;
@@ -55,20 +69,6 @@
 
 .align-text-center {
   text-align: center;
-}
-
-p {
-  margin: 0;
-  align-content: center;
-}
-
-h2 {
-  text-align: center;
-}
-
-img {
-  height: 24px;
-  margin-right: 4px;
 }
 
 .time {

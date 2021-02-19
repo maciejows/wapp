@@ -1,3 +1,4 @@
+ <!-- Progress bar -->
 <ng-container>
     <mat-progress-bar
         *ngIf="(isLoading$ | async); else errorInfo" 
@@ -5,16 +6,20 @@
     </mat-progress-bar>
 </ng-container>
 
-<ng-template #errorInfo>
+ <!-- Error info -->
+ <ng-template #errorInfo>
     <ng-container *ngIf="(error$ | async) as error; else weatherCard"> 
         <h2>{{error}}</h2>
     </ng-container>
  </ng-template>
 
-<ng-template #weatherCard>
+ <!-- Weather Card -->
+ <ng-template #weatherCard>
     <mat-card *ngIf="(weatherResult$ | async) as weatherResult">
         <div class="flex-container">
+             <!-- Detailed weather -->
             <app-weather-details id="weather-details" [weather]="selectedWeather$ | async"></app-weather-details>
+            <!-- Location informations -->
             <div id="location-info" class="align-text-center location-container">
                 <div>
                     <h2 id="location-title">{{weatherResult.locationTitle}}</h2>
@@ -27,6 +32,7 @@
             </div>
         </div>
             <mat-divider></mat-divider>
+            <!-- Daily simplified weather informations -->
             <div class="daily-container">
                 <div *ngFor="let details of weatherResult.weatherDetails" class="flex-item">
                     <app-daily-weather [weather]="details" [selectedWeather]="selectedWeather$ | async"></app-daily-weather>
