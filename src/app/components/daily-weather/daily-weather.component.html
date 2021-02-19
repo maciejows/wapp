@@ -1,6 +1,6 @@
 <button 
 mat-button 
-[style.backgroundColor]="(weather == selectedWeather)? 'grey' : 'inherit'"
+[ngClass]="(weather == selectedWeather)? 'selected-bg' : 'inherited-bg'"
 (click)="selectWeatherDetails()" class="daily-card">
     <p> {{weather.applicableDate | customDate}} </p>
     <div class="temperature-box">

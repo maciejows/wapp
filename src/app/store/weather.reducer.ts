@@ -1,5 +1,5 @@
 import { createReducer, Action, on } from '@ngrx/store'
-import { getLocationWoeid, getWeatherDetailsSuccess, getWeatherDetailsError, searchForLocationsSuccess, searchForLocationsError, getLocationWoeidError, selectWeatherDetails} from './weather.actions';
+import { getLocationWoeid, getWeatherDetailsSuccess, searchForLocationsSuccess, getLocationWoeidError, selectWeatherDetails, searchForLocationsError, getWeatherDetailsError} from './weather.actions';
 import { WeatherState } from '../models/WeatherState';
 
 export const initialState: WeatherState = {
@@ -13,9 +13,9 @@ export const initialState: WeatherState = {
 const _weatherReducer = createReducer(
     initialState,
     on(searchForLocationsSuccess, (state, { locations }) => ({...state, locations: locations})),
-    on(searchForLocationsError, (state, {error}) => ({...state, error: error })),
+    on(searchForLocationsError, (state, {error}) => ({...state, isLoading: false, error: "Not found"})),
     on(getLocationWoeid, (state) => ({...state, isLoading: true})),
-    on(getWeatherDetailsSuccess, (state, {weather}) => ({...state, weather: weather, selectedDetails: weather.weatherDetails[0], isLoading: false })),
+    on(getWeatherDetailsSuccess, (state, {weather}) => ({...state,  error: "", weather: weather, selectedDetails: weather.weatherDetails[0], isLoading: false})),
     on(getWeatherDetailsError, (state, {error}) => ({...state, isLoading: false, error: error})),
     on(getLocationWoeidError, (state, {error}) => ({...state, error: error})),
     on(selectWeatherDetails, (state, {details}) => ({...state, selectedDetails: details}))

@@ -19,7 +19,9 @@ export class SearchBarComponent {
     this.searchSubscription = this.searchTerms.pipe(
       debounceTime(100),
       distinctUntilChanged(),
-    ).subscribe(term => this.searchLocation(term))
+    ).subscribe(term => {
+      if(term != '') this.searchLocation(term)
+    })
   }
 
   // Autocomplete

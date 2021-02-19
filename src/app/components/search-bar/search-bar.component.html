@@ -1,4 +1,4 @@
-<form class="location-form">
+<form class="search-form">
     <mat-form-field>
       <mat-label>Location</mat-label>
       <input 
@@ -9,7 +9,11 @@
         [matAutocomplete]="auto"
         (keyup)="onKeyUp(locationInput.value)">
     </mat-form-field>
-  <button mat-stroked-button (click)="getLocationDetails(locationInput.value)">Search</button>
+  <button 
+    mat-stroked-button
+    (click)="getLocationDetails(locationInput.value); locationInput.value = ''">
+    Search
+  </button>
 </form>
 
 <mat-autocomplete #auto="matAutocomplete">
